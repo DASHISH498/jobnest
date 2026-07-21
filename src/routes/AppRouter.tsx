@@ -8,6 +8,11 @@ import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/HomePage";
 import JobsPage from "../pages/JobsPage";
 import JobDetailsPage from "../pages/JobDetailsPage";
+import ApplyJobPage from "../pages/ApplyJobPage";
+import ApplicationSuccessPage from "../pages/ApplicationSuccessPage";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import DashboardPage from "../pages/DashboardPage";
 
 const router = createBrowserRouter(
   [
@@ -26,6 +31,26 @@ const router = createBrowserRouter(
         {
           path: "jobs/:id",
           element: <JobDetailsPage />,
+        },
+        {
+          path: "jobs/:id/apply",
+          element: <ApplyJobPage />,
+        },
+        {
+          path: "application-success",
+          element: <ApplicationSuccessPage />,
+        },
+        {
+          path: "login",
+          element: <LoginPage />,
+        },
+        {
+          path: "register",
+          element: <RegisterPage />,
+        },
+        {
+          path: "dashboard",
+          element: <DashboardPage />,
         },
       ],
     },

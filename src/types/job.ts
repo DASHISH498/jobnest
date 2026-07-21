@@ -8,4 +8,12 @@ export interface Job {
   type: string;
   experience: string;
   posted: string;
+
+  description: string;
+
+  requirements: string[];
+
+  responsibilities: string[];
+
+  aboutCompany: string;
 }
