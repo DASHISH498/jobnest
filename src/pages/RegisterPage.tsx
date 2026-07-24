@@ -1,5 +1,5 @@
 import type { FormEvent } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 import Card from "../components/ui/Card";
