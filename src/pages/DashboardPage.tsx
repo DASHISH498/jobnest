@@ -16,6 +16,7 @@ import {
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 import { useAuth } from "../context/AuthContext";
+import StatCard from "../components/dashboard/StatCard";
 
 import QuickActionCard from "../components/dashboard/QuickActionCard";
 
@@ -114,14 +115,14 @@ export default function DashboardPage() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {stats.map((item) => (
-            <StatCard
-              key={item.title}
-              title={item.title}
-              value={item.value}
-              icon={item.icon}
-              color={item.color}
-            />
-          ))}
+          <StatCard
+            key={item.title}
+            title={item.title}
+            value={item.value}
+            icon={item.icon}
+            color={item.color}
+          />
+        ))}
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-3">
