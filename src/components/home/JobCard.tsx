@@ -1,3 +1,5 @@
+
+import { useState } from "react";
 import {
   ArrowRight,
   Bookmark,
@@ -9,12 +11,20 @@ import {
 } from "lucide-react";
 import { Link } from "react-router";
 import type { Job } from "../../types/job";
+import { isJobSaved, toggleSavedJob } from "../../utils/savedJobs";
 
 type JobCardProps = {
   job: Job;
 };
 
 export default function JobCard({ job }: JobCardProps) {
+  const [saved, setSaved] = useState(() => isJobSaved(job.id));
+
+  function handleBookmark() {
+    const isSaved = toggleSavedJob(job);
+    setSaved(isSaved);
+  }
+
   return (
     <div className="group rounded-3xl border border-zinc-800 bg-zinc-900 p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500 hover:shadow-[0_0_40px_rgba(6,182,212,0.15)]">
       <div className="flex items-start justify-between">
@@ -25,15 +35,25 @@ export default function JobCard({ job }: JobCardProps) {
 
           <div>
             <h3 className="font-semibold">{job.company}</h3>
-
             <div className="mt-2 inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-xs text-cyan-400">
               {job.type}
             </div>
           </div>
         </div>
 
-        <button className="rounded-xl border border-zinc-700 p-2 transition hover:border-cyan-500">
-          <Bookmark size={18} />
+        <button
+          type="button"
+          onClick={handleBookmark}
+          aria-label={saved ? "Remove saved job" : "Save job"}
+          aria-pressed={saved}
+          title={saved ? "Remove from Saved Jobs" : "Save Job"}
+          className={`rounded-xl border p-2 transition ${
+            saved
+              ? "border-cyan-500 bg-cyan-500/10 text-cyan-400"
+              : "border-zinc-700 text-zinc-400 hover:border-cyan-500 hover:text-cyan-400"
+          }`}
+        >
+          <Bookmark size={18} className={saved ? "fill-current" : ""} />
         </button>
       </div>
 
@@ -73,11 +93,9 @@ export default function JobCard({ job }: JobCardProps) {
         <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs text-cyan-400">
           {job.type}
         </span>
-
         <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs">
           React
         </span>
-
         <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs">
           TypeScript
         </span>
@@ -91,10 +109,13 @@ export default function JobCard({ job }: JobCardProps) {
           View Details
         </Link>
 
-        <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-cyan-500 py-3 font-semibold text-black transition hover:bg-cyan-400">
+        <Link
+          to={`/jobs/${job.id}/apply`}
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-cyan-500 py-3 font-semibold text-black transition hover:bg-cyan-400"
+        >
           Apply
           <ArrowRight size={18} />
-        </button>
+        </Link>
       </div>
     </div>
   );

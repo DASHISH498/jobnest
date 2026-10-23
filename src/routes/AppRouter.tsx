@@ -1,3 +1,4 @@
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,44 +21,23 @@ const router = createBrowserRouter(
       path: "/",
       element: <MainLayout />,
       children: [
-        {
-          index: true,
-          element: <HomePage />,
-        },
-        {
-          path: "jobs",
-          element: <JobsPage />,
-        },
-        {
-          path: "jobs/:id",
-          element: <JobDetailsPage />,
-        },
-        {
-          path: "jobs/:id/apply",
-          element: <ApplyJobPage />,
-        },
+        { index: true, element: <HomePage /> },
+        { path: "jobs", element: <JobsPage /> },
+        { path: "jobs/:id", element: <JobDetailsPage /> },
+        { path: "jobs/:id/apply", element: <ApplyJobPage /> },
         {
           path: "application-success",
           element: <ApplicationSuccessPage />,
         },
-        {
-          path: "login",
-          element: <LoginPage />,
-        },
-        {
-          path: "register",
-          element: <RegisterPage />,
-        },
-        {
-          path: "dashboard",
-          element: <DashboardPage />,
-        },
+        { path: "login", element: <LoginPage /> },
+        { path: "register", element: <RegisterPage /> },
+        { path: "dashboard", element: <DashboardPage /> },
       ],
     },
   ],
   {
-    basename: import.meta.env.PROD ? "/jobnest" : "/",
-  }
+    basename: import.meta.env.BASE_URL.replace(/\/$/, ""),
+  },
 );
 
 export default function AppRouter() {
