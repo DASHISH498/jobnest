@@ -86,6 +86,11 @@ export default function ApplyJobPage() {
     event.preventDefault();
     setError("");
 
+    if (!job) {
+      setError("Job not found. Please return to the jobs page.");
+      return;
+    }
+
     if (!confirmed) {
       setError("Please confirm that your information is correct.");
       return;
@@ -130,9 +135,7 @@ export default function ApplyJobPage() {
               <BriefcaseBusiness size={22} />
             </div>
 
-            <p className="text-sm font-medium text-cyan-400">
-              Job Application
-            </p>
+            <p className="text-sm font-medium text-cyan-400">Job Application</p>
 
             <h1 className="mt-2 text-2xl font-bold sm:text-3xl">
               Apply for {job.title}
@@ -148,9 +151,7 @@ export default function ApplyJobPage() {
             className="min-h-0 flex-1 space-y-8 overflow-y-auto overscroll-contain p-5 sm:p-8"
           >
             <div>
-              <h2 className="text-xl font-semibold">
-                Personal Information
-              </h2>
+              <h2 className="text-xl font-semibold">Personal Information</h2>
               <p className="mt-1 text-sm text-zinc-400">
                 Enter your contact details.
               </p>
@@ -225,9 +226,7 @@ export default function ApplyJobPage() {
             </div>
 
             <div className="border-t border-zinc-800 pt-8">
-              <h2 className="text-xl font-semibold">
-                Professional Details
-              </h2>
+              <h2 className="text-xl font-semibold">Professional Details</h2>
               <p className="mt-1 text-sm text-zinc-400">
                 Tell the employer about your experience.
               </p>
@@ -377,9 +376,7 @@ export default function ApplyJobPage() {
                   }}
                   className="mt-1 accent-cyan-500"
                 />
-                <span>
-                  I confirm that the information provided is correct.
-                </span>
+                <span>I confirm that the information provided is correct.</span>
               </label>
             </div>
 
